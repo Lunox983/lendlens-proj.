@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>สไลด์ 4 — ภาพรวมจำนวนฟีเจอร์ (Project Libraries)</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f4f6fb; color:#222; padding:20px; }
+        .container { max-width:960px; margin:0 auto; }
+        h1 { text-align:center; font-size:24px; margin-bottom:6px; color:#1a237e; }
+        .subtitle { text-align:center; font-size:13px; color:#888; margin-bottom:24px; }
+        
+        .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:28px; }
+        .card { background:#fff; border-radius:12px; padding:18px 14px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.07); }
+        .card .num { font-size:36px; font-weight:800; }
+        .card .lbl { font-size:12px; color:#666; margin-top:4px; }
+        .card.user .num { color:#2563eb; }
+        .card.admin .num { color:#7c3aed; }
+        .card.scanner .num { color:#0891b2; }
+        .card.cron .num { color:#d97706; }
+        .card.api .num { color:#dc2626; }
+        
+        .section { background:#fff; border-radius:12px; padding:20px 24px; margin-bottom:18px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+        .section h2 { font-size:17px; margin-bottom:10px; padding-bottom:6px; border-bottom:2px solid #e5e7eb; }
+        .section h2 .badge { display:inline-block; background:#e0e7ff; color:#3730a3; font-size:11px; padding:2px 8px; border-radius:20px; margin-left:8px; font-weight:600; }
+        
+        table { width:100%; border-collapse:collapse; font-size:13.5px; }
+        th { background:#f1f5f9; text-align:left; padding:8px 10px; font-weight:600; font-size:12px; color:#475569; border-bottom:2px solid #e2e8f0; }
+        td { padding:7px 10px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+        tr:hover { background:#f8fafc; }
+        code { background:#f1f5f9; padding:1px 5px; border-radius:4px; font-size:12px; color:#be185d; }
+        .tag { display:inline-block; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:500; margin-right:3px; }
+        .tag-get { background:#dcfce7; color:#166534; }
+        .tag-post { background:#dbeafe; color:#1e40af; }
+        .tag-put { background:#fef9c3; color:#854d0e; }
+        .tag-del { background:#fee2e2; color:#991b1b; }
+        
+        .note { background:#fffbeb; border-left:3px solid #f59e0b; padding:10px 14px; font-size:12.5px; border-radius:0 8px 8px 0; margin-top:12px; color:#78350f; }
+        .note strong { color:#92400e; }
+        
+        .footer { text-align:center; margin-top:20px; font-size:11px; color:#aaa; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📊 ภาพรวมจำนวนฟีเจอร์ — ระบบจัดการยืม-คืนอุปกรณ์ห้องสมุด</h1>
+    <p class="subtitle">ข้อมูลนับจากซอร์สโค้ดจริง (Project_Libraries-main) • สร้างเมื่อ 8 ต.ค. 2569</p>
+    
+    <!-- ===== SUMMARY CARDS ===== -->
+    <div class="cards">
+        <div class="card user">
+            <div class="num">8</div>
+            <div class="lbl">หน้าจอ User-web<br>(นักศึกษา)</div>
+        </div>
+        <div class="card admin">
+            <div class="num">9</div>
+            <div class="lbl">หน้าจอ Admin-web<br>(เจ้าหน้าที่)</div>
+        </div>
+        <div class="card scanner">
+            <div class="num">2</div>
+            <div class="lbl">หน้าจอ Scanner<br>(สแกน QR)</div>
+        </div>
+        <div class="card cron">
+            <div class="num">4</div>
+            <div class="lbl">Cron Jobs<br>(งานอัตโนมัติ)</div>
+        </div>
+        <div class="card api">
+            <div class="num">38</div>
+            <div class="lbl">API Endpoints<br>(Backend)</div>
+        </div>
+    </div>
+    
+    <!-- ===== 1. USER-WEB ===== -->
+    <div class="section">
+        <h2>🟦 User-web (แอปนักศึกษา) <span class="badge">8 หน้าจอ • 2 ไฟล์</span></h2>
+        <table>
+            <tr><th>#</th><th>หน้าจอ (key)</th><th>ชื่อภาษาไทย</th><th>ไฟล์</th><th>ฟีเจอร์หลัก</th></tr>
+            <tr><td>1</td><td><code>login</code></td><td>เข้าสู่ระบบ</td><td>Login.jsx</td><td>ล็อกอินด้วยรหัสนักศึกษา + รหัสผ่าน, session token</td></tr>
+            <tr><td>2</td><td><code>dashboard</code></td><td>หน้าหลัก</td><td>UserApp.jsx</td><td>สรุปรายการยืม, อุปกรณ์ที่เคยยืม, ประกาศ, Quick Borrow</td></tr>
+            <tr><td>3</td><td><code>search</code></td><td>ค้นหาอุปกรณ์</td><td>UserApp.jsx</td><td>ค้นหา + กรองตามหมวดหมู่ (15 หมวด), ดูรายละเอียด, ยืม/จองคิว</td></tr>
+            <tr><td>4</td><td><code>cart</code></td><td>ตะกร้ายืม</td><td>UserApp.jsx</td><td>เพิ่ม/ลบรายการ, Checkout หลายรายการพร้อมกัน</td></tr>
+            <tr><td>5</td><td><code>queue</code></td><td>คิวของฉัน</td><td>UserApp.jsx</td><td>ดูคิวที่กำลังรอ, ยกเลิกคิว</td></tr>
+            <tr><td>6</td><td><code>status</code></td><td>รายการของฉัน</td><td>UserApp.jsx</td><td>ดูรายการยืม/คืน/ค้างส่ง, ยกเลิกคำขอ, แจ้งสูญหาย</td></tr>
+            <tr><td>7</td><td><code>notifications</code> / <code>announcements</code></td><td>แจ้งเตือน & ประกาศ</td><td>UserApp.jsx</td><td>แจ้งเตือนระบบ (ยืม/คืน/เลยกำหนด) + ประกาศจากเจ้าหน้าที่</td></tr>
+            <tr><td>8</td><td><code>settings</code></td><td>ตั้งค่า</td><td>UserApp.jsx</td><td>เปิด/ปิดแจ้งเตือนอีเมล, แก้ไขข้อมูลส่วนตัว, ออกจากระบบ</td></tr>
+        </table>
+        <div class="note">
+            <strong>หมายเหตุ:</strong> ทุกหน้าจอรวมอยู่ในไฟล์ <code>UserApp.jsx</code> ไฟล์เดียว (156 KB, 2,338 บรรทัด) โดยใช้ state <code>currentPage</code> สลับ render
+            + มี Modal/Popup: ดูรายละเอียดอุปกรณ์, ยืนยันยืม, แจ้งสูญหาย, ใบเสร็จ
+        </div>
+    </div>
+    
+    <!-- ===== 2. ADMIN-WEB ===== -->
+    <div class="section">
+        <h2>🟪 Admin-web (แอปเจ้าหน้าที่) <span class="badge">9 หน้าจอ • 2 ไฟล์</span></h2>
+        <table>
+            <tr><th>#</th><th>หน้าจอ (key)</th><th>ชื่อภาษาไทย</th><th>ไฟล์</th><th>ฟีเจอร์หลัก</th></tr>
+            <tr><td>1</td><td><code>login</code></td><td>เข้าสู่ระบบ</td><td>Login.jsx</td><td>ล็อกอินด้วยบัญชีแอดมิน + ErrorBoundary</td></tr>
+            <tr><td>2</td><td><code>dashboard</code></td><td>แดชบอร์ด</td><td>Home.jsx</td><td>KPI Cards, กราฟยืม-คืน (7/30/90 วัน), กิจกรรมล่าสุด</td></tr>
+            <tr><td>3</td><td><code>borrows</code></td><td>รายการยืม</td><td>Home.jsx</td><td>ตารางคำขอยืม, อนุมัติ/ปฏิเสธ, ค้นหา/กรอง, สแกน QR รับอุปกรณ์</td></tr>
+            <tr><td>4</td><td><code>returns</code></td><td>รายการคืน</td><td>Home.jsx</td><td>สแกน barcode คืนอุปกรณ์, ดูประวัติการคืน</td></tr>
+            <tr><td>5</td><td><code>equipment</code></td><td>คลังอุปกรณ์</td><td>Home.jsx</td><td>CRUD อุปกรณ์ (เพิ่ม/แก้ไข/ลบ), ดู item ย่อย, อัปโหลดรูป, เปลี่ยนสถานะชิ้นย่อย</td></tr>
+            <tr><td>6</td><td><code>users</code></td><td>ผู้ใช้งาน / ประวัติ</td><td>Home.jsx</td><td>ดูรายชื่อนักศึกษา, ประวัติยืม-คืนรายบุคคล, ค้นหา</td></tr>
+            <tr><td>7</td><td><code>notify</code></td><td>ประกาศ</td><td>Home.jsx</td><td>ส่งประกาศ (ข้อความ + รูปภาพ), ดูรายการประกาศเก่า</td></tr>
+            <tr><td>8</td><td><code>report</code></td><td>รายงาน</td><td>Home.jsx</td><td>สร้างรายงานรายเดือน/รายปี/สถิติอุปกรณ์, Export Excel / PDF / รูปภาพ, สรุปยอดยืม-คืน-ค้าง</td></tr>
+            <tr><td>9</td><td>—</td><td>สแกน QR (Unified Scanner)</td><td>Home.jsx</td><td>สแกน QR/barcode ในหน้า borrows/returns — รับอุปกรณ์จากคิว, คืนอุปกรณ์, อ่าน QR จากรูปภาพ</td></tr>
+        </table>
+        <div class="note">
+            <strong>หมายเหตุ:</strong> ทุกหน้าจอรวมอยู่ใน <code>Home.jsx</code> (157 KB, 2,110 บรรทัด) 
+            + มี Modal: ดูคิวอุปกรณ์, ประวัติผู้ใช้, ดูชิ้นย่อยอุปกรณ์, ยืนยันลบ
+        </div>
+    </div>
+    
+    <!-- ===== 3. SCANNER ===== -->
+    <div class="section">
+        <h2>📷 Scanner App (สแกน QR เฉพาะทาง) <span class="badge">2 หน้าจอ • 1 ไฟล์</span></h2>
+        <table>
+            <tr><th>#</th><th>หน้าจอ</th><th>ฟีเจอร์</th></tr>
+            <tr><td>1</td><td>เข้าสู่ระบบ (Admin Login)</td><td>ล็อกอินด้วยบัญชีแอดมินเดียวกัน</td></tr>
+            <tr><td>2</td><td>สแกนเนอร์หลัก</td><td>เปิดกล้องสแกน QR ต่อเนื่อง, เสียงบี๊ป, แสดงผลสำเร็จ/ล้มเหลว, รองรับ pickup queue + return by barcode, Socket.io realtime</td></tr>
+        </table>
+        <div class="note">
+            <strong>หมายเหตุ:</strong> ใช้ <code>html5-qrcode</code> เปิดกล้องสแกน, ไฟล์เดียว <code>App.jsx</code> (572 บรรทัด), ออกแบบสำหรับใช้บนมือถือ/แท็บเล็ตของเจ้าหน้าที่
+        </div>
+    </div>
+    
+    <!-- ===== 4. CRON JOBS ===== -->
+    <div class="section">
+        <h2>⏰ Cron Jobs (งานอัตโนมัติ) <span class="badge">4 ตัว</span></h2>
+        <table>
+            <tr><th>#</th><th>Schedule</th><th>เวลาทำงาน</th><th>หน้าที่</th><th>รายละเอียด</th></tr>
+            <tr>
+                <td>1</td><td><code>0 0 * * *</code></td><td>เที่ยงคืนทุกวัน</td>
+                <td>รีเซ็ตคิว/จอง + เช็ค Overdue</td>
+                <td>ยกเลิกจองที่ค้าง pending → cancelled, ยกเลิกคิว waiting/called → expired, ตรวจอุปกรณ์เลยกำหนดคืน → overdue + ส่งอีเมลแจ้ง</td>
+            </tr>
+            <tr>
+                <td>2</td><td><code>0 8 * * *</code></td><td>08:00 น. ทุกวัน</td>
+                <td>แจ้งเตือนใกล้ครบกำหนด</td>
+                <td>ตรวจอุปกรณ์ที่จะครบกำหนดคืนใน 1, 2, 3 วัน → ส่ง notification + อีเมล</td>
+            </tr>
+            <tr>
+                <td>3</td><td><code>0 16 * * *</code></td><td>16:00 น. ทุกวัน</td>
+                <td>แจ้งเตือนด่วน (ครบกำหนดวันนี้)</td>
+                <td>ตรวจอุปกรณ์ที่ครบกำหนดคืน "วันนี้" → ส่ง notification + อีเมลเตือนด่วน</td>
+            </tr>
+            <tr>
+                <td>4</td><td><code>* * * * *</code></td><td>ทุก 1 นาที</td>
+                <td>เช็คคิวหมดเวลา</td>
+                <td>ตรวจคิวที่ถูกเรียก (called) เกิน 5 นาที → expired อัตโนมัติ, จัดลำดับคิวใหม่, เรียกคนถัดไป + ตรวจจองที่เกิน reservation_expires_at</td>
+            </tr>
+        </table>
+        <div class="note">
+            <strong>ที่มา:</strong> ทั้ง 4 Cron ใช้ <code>node-cron</code> อยู่ใน <code>server.js</code> บรรทัด 83–318 • ทุกตัวส่ง notification ผ่าน DB + อีเมลผ่าน <code>mailer.js</code> (nodemailer)
+        </div>
+    </div>
+    
+    <!-- ===== 5. API ENDPOINTS ===== -->
+    <div class="section">
+        <h2>🔴 API Endpoints <span class="badge">38 endpoints • 3 ไฟล์ route</span></h2>
+        <table>
+            <tr><th>กลุ่ม</th><th>ไฟล์</th><th>Prefix</th><th>จำนวน</th><th>ตัวอย่าง Endpoints</th></tr>
+            <tr>
+                <td><strong>Admin</strong></td><td>adminRoutes.js</td><td>/api/admin/</td><td style="text-align:center;font-weight:bold;">22</td>
+                <td>
+                    <span class="tag tag-get">GET</span> dashboard, requests, equipments, users, reports, notifications, queue ฯลฯ<br>
+                    <span class="tag tag-post">POST</span> update-request, equipments, notifications, pickup_queue.php, return_by_barcode.php ฯลฯ<br>
+                    <span class="tag tag-put">PUT</span> equipments/:id, equipment-items/:itemId/status<br>
+                    <span class="tag tag-del">DEL</span> equipments/:id
+                </td>
+            </tr>
+            <tr>
+                <td><strong>นักศึกษา (Mobile)</strong></td><td>mobileRoutes.js</td><td>/api/</td><td style="text-align:center;font-weight:bold;">14</td>
+                <td>
+                    <span class="tag tag-get">GET</span> get_equipments, get_detail, get_queue, get_student, get_notifications, get_borrowed, my_queue ฯลฯ<br>
+                    <span class="tag tag-post">POST</span> login, checkout, join_queue, cancel_queue, cancel_request, report_lost, update_student_profile
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Authentication</strong></td><td>authRoutes.js</td><td>/api/auth/</td><td style="text-align:center;font-weight:bold;">2</td>
+                <td>
+                    <span class="tag tag-post">POST</span> admin-login, user-login
+                </td>
+            </tr>
+        </table>
+        
+        <div class="note">
+            <strong>สิ่งที่พบเพิ่มเติม:</strong><br>
+            • <strong>Socket.io</strong> ระบบส่ง event <code>data_updated</code> และ <code>scan_success</code> ผ่าน <code>req.app.get('io')</code> — ตรงกับ Architecture Diagram ที่ใช้ Socket.io<br>
+            • <strong>8 endpoints ใช้ validation schema</strong> ตรวจข้อมูลก่อนเข้า (login, checkout, queue, update-request, notifications, report_lost ฯลฯ)<br>
+            • Endpoint ชื่อลงท้าย <code>.php</code> (เช่น checkout.php, get_equipments.php) เป็นชื่อเดิมจาก PHP ก่อน migrate มา Node.js — ทำงานบน Node.js แท้<br>
+            • <strong>CORS:</strong> รองรับ multi-origin ผ่าน .env, <strong>Auth:</strong> ใช้ JWT Bearer Token
+        </div>
+    </div>
+    
+    <!-- ===== GRAND TOTAL ===== -->
+    <div class="section" style="background:linear-gradient(135deg,#1e3a5f,#2d1b69); color:#fff; text-align:center;">
+        <h2 style="border:none; color:#fff; font-size:20px; margin-bottom:14px;">🏆 สรุปรวมทั้งระบบ</h2>
+        <table style="color:#fff;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,.2);">
+                <td style="padding:10px; font-size:15px;">🖥️ จำนวนหน้าจอทั้งหมด (User + Admin + Scanner)</td>
+                <td style="padding:10px; font-size:28px; font-weight:800; color:#60a5fa;">19 หน้าจอ</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.2);">
+                <td style="padding:10px; font-size:15px;">🔌 API Endpoints</td>
+                <td style="padding:10px; font-size:28px; font-weight:800; color:#f87171;">38 endpoints</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.2);">
+                <td style="padding:10px; font-size:15px;">⏰ Cron Jobs (งานอัตโนมัติ)</td>
+                <td style="padding:10px; font-size:28px; font-weight:800; color:#fbbf24;">4 ตัว</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.2);">
+                <td style="padding:10px; font-size:15px;">📡 Realtime Events (Socket.io)</td>
+                <td style="padding:10px; font-size:28px; font-weight:800; color:#34d399;">2 events</td>
+            </tr>
+            <tr>
+                <td style="padding:10px; font-size:15px;">📧 ระบบส่งอีเมลอัตโนมัติ (nodemailer)</td>
+                <td style="padding:10px; font-size:28px; font-weight:800; color:#c084fc;">4 ประเภท</td>
+            </tr>
+        </table>
+    </div>
+    
+    <p class="footer">สร้างจากซอร์สโค้ดจริงใน Project_Libraries-main • เพื่อใช้ประกอบสไลด์ที่ 4 ของ PPT</p>
+</div>
+</body>
+</html>

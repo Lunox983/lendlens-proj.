@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ========================================
+   QR Scanner Mobile App - Custom Styles
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+/* Login screen — use dynamic viewport height for mobile */
+.login-screen {
+  height: 100vh;
+  height: 100dvh; /* dynamic viewport height — accounts for mobile browser chrome */
+  width: 100%;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar { display: none; }
+
+/* Scanner video container */
+#qr-reader {
+  border: none !important;
+  background: transparent !important;
+}
+
+#qr-reader video {
+  object-fit: cover !important;
+}
+
+#qr-reader img[alt="Info icon"],
+#qr-reader img[alt="Camera based scan"],
+#qr-reader span,
+#qr-reader select,
+#qr-reader button,
+#qr-reader br,
+#html5-qrcode-anchor-scan-type-change,
+#html5-qrcode-button-camera-permission,
+#html5-qrcode-button-camera-stop,
+#html5-qrcode-button-camera-start,
+#qr-reader__dashboard,
+#qr-reader__dashboard_section,
+#qr-reader__dashboard_section_csr,
+#qr-reader__dashboard_section_swaplink {
+  display: none !important;
+}
+
+#qr-reader__scan_region {
+  min-height: unset !important;
+}
+
+/* ========================================
+   Scan Line Animation
+   ======================================== */
+@keyframes scan-line {
+  0% { top: 0; }
+  50% { top: calc(100% - 3px); }
+  100% { top: 0; }
+}
+
+.scan-line {
+  animation: scan-line 2.5s ease-in-out infinite;
+}
+
+/* ========================================
+   Flash Animations (Success / Error)
+   ======================================== */
+@keyframes flash-success {
+  0% { background: rgba(16, 185, 129, 0.35); }
+  100% { background: transparent; }
+}
+
+.flash-success {
+  animation: flash-success 0.5s ease-out;
+}
+
+@keyframes flash-error {
+  0% { background: rgba(239, 68, 68, 0.35); }
+  100% { background: transparent; }
+}
+
+.flash-error {
+  animation: flash-error 0.5s ease-out;
+}
+
+/* ========================================
+   Toast Slide-in
+   ======================================== */
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* ========================================
+   Result Overlay — Big Pass/Fail
+   ======================================== */
+@keyframes result-appear {
+  0% { opacity: 0; transform: scale(0.7); }
+  30% { opacity: 1; transform: scale(1.05); }
+  50% { transform: scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.95); }
+}
+
+.result-overlay {
+  animation: result-appear 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes icon-pop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.result-icon-pop {
+  animation: icon-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s backwards;
+}
+
+@keyframes result-card-in {
+  0% { transform: scale(0.6) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.result-card {
+  animation: result-card-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ========================================
+   Scanner Layout Fixes for Mobile
+   ======================================== */
+#qr-reader {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+#qr-reader__dashboard_section_csr {
+  display: none !important;
+}
+
+#qr-reader video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
+/* ========================================
+   Login Page Animations
+   ======================================== */
+@keyframes login-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+}
+
+.login-float {
+  animation: login-float 4s ease-in-out infinite;
+}
+
+.login-float-delay {
+  animation: login-float 5s ease-in-out 1.5s infinite;
+}
+
+@keyframes icon-pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.15), 0 25px 50px rgba(59, 7, 100, 0.4); }
+  50% { box-shadow: 0 0 50px rgba(139, 92, 246, 0.3), 0 25px 50px rgba(59, 7, 100, 0.4); }
+}
+
+.login-icon-pulse {
+  animation: icon-pulse-glow 3s ease-in-out infinite;
+}
+

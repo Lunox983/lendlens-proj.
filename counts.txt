@@ -1,0 +1,261 @@
+﻿UserApp.jsx: const API_BASE = typeof window !== 'undefined' ? `http://${window.location.hostname}:5000/api` : "http://localhost:5000/api";
+UserApp.jsx: const IMG_BASE = typeof window !== 'undefined' ? `http://${window.location.hostname}:5000/` : "http://localhost:5000/";
+UserApp.jsx: const NAV_ITEMS = [
+UserApp.jsx: const CATEGORIES = [
+UserApp.jsx: const STATUS_MAP = {
+UserApp.jsx: const formatEquipmentName = (name) => {
+UserApp.jsx: const formatThaiDate = (dateString) => {
+UserApp.jsx: const d = new Date(dateString);
+UserApp.jsx: const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+UserApp.jsx: const daysBetween = (d1, d2) => {
+UserApp.jsx: const oneDay = 24 * 60 * 60 * 1000;
+UserApp.jsx: const matchCategory = (name, cat) => {
+UserApp.jsx: const n = (name || '').toLowerCase();
+UserApp.jsx: const getItemStatus = (item) => {
+UserApp.jsx: const today = new Date();
+UserApp.jsx: const borrowDate = new Date(item.borrow_date);
+UserApp.jsx: const returnDate = item.return_date ? new Date(item.return_date) : null;
+UserApp.jsx: const borrowDate = new Date(item.borrow_date);
+UserApp.jsx: const borrowDays = item.borrow_days || 7;
+UserApp.jsx: const daysLeft = daysBetween(today, dueDate);
+UserApp.jsx: const elapsed = daysBetween(borrowDate, today);
+UserApp.jsx: const getProgressColor = (type) => {
+UserApp.jsx: const getBadgeStyle = (type) => {
+UserApp.jsx: function Toast({ message, type, onClose }) {
+UserApp.jsx: const colors = {
+UserApp.jsx: const timer = setTimeout(onClose, 3500);
+UserApp.jsx: const token = sessionStorage.getItem('user_token');
+UserApp.jsx: const headers = {
+UserApp.jsx: const res = await fetch(`${API_BASE}${url.startsWith('/') ? '' : '/'}${url}`, { ...options, headers });
+UserApp.jsx: const formatTimeAgo = (date) => {
+UserApp.jsx: const seconds = Math.floor((new Date() - date) / 1000);
+UserApp.jsx: const getNotifIcon = (type) => {
+UserApp.jsx: function NotificationsView({ title, notifications, isLoading, onNotificationClick }) {
+UserApp.jsx: const isExpanded = expandedId === notif.id;
+UserApp.jsx: const hasDetails = notif.desc || notif.image_url;
+UserApp.jsx: const showToast = (message, type = 'info') => setToast({ message, type });
+UserApp.jsx: const groupedReceipts = useMemo(() => {
+UserApp.jsx: const groups = {};
+UserApp.jsx: const txId = item.transaction_id || new Date(item.borrow_date).getTime().toString();
+UserApp.jsx: const socket = io(IMG_BASE);
+UserApp.jsx: const fetchBorrowed = () => {
+UserApp.jsx: const fetchMyQueue = async () => {
+UserApp.jsx: const result = await authFetch(`/my_queue.php?student_id=${studentId}`);
+UserApp.jsx: const fetchNotificationsData = async (type) => {
+UserApp.jsx: const today = new Date();
+UserApp.jsx: const groups = {};
+UserApp.jsx: const key = item.borrow_date ? item.borrow_date.substring(0, 16) : 'unknown';
+UserApp.jsx: const items = groups[key];
+UserApp.jsx: const firstItem = items[0];
+UserApp.jsx: const borrowDate = new Date(firstItem.borrow_date);
+UserApp.jsx: const txId = firstItem.transaction_id || 'LB' + String(firstItem.id).padStart(6, '0');
+UserApp.jsx: const allReturned = items.every(i => i.status === 'returned');
+UserApp.jsx: const title = allReturned ? 'คืนอุปกรณ์สำเร็จ' : 'ยืนยันยืมอุปกรณ์สำเร็จ';
+UserApp.jsx: const notifType = allReturned ? 'success' : 'info';
+UserApp.jsx: const borrowDate = new Date(item.borrow_date);
+UserApp.jsx: const dueDate = new Date(borrowDate);
+UserApp.jsx: const oneDay = 24 * 60 * 60 * 1000;
+UserApp.jsx: const daysLeft = Math.round((dueDate.getTime() - today.getTime()) / oneDay);
+UserApp.jsx: const sysRes = await authFetch(`/get_notifications.php?student_id=${studentId}&type=${type}`);
+UserApp.jsx: const openReportLostModal = (item) => {
+UserApp.jsx: const handleReportLostSubmit = async (e) => {
+UserApp.jsx: const data = await authFetch('/report_lost.php', {
+UserApp.jsx: const executeQuickBorrow = async () => {
+UserApp.jsx: const equipment = quickBorrowTarget;
+UserApp.jsx: const reqBody = { student_id: studentId, equipment_id: equipment.equipment_id };
+UserApp.jsx: const data = await authFetch('/checkout.php', {
+UserApp.jsx: const txId = new Date().getTime().toString();
+UserApp.jsx: const handleToggleNotifyEmail = async () => {
+UserApp.jsx: const newValue = !notifyDue;
+UserApp.jsx: const res = await authFetch('/update_student_profile.php', {
+UserApp.jsx: const handleSaveSettings = async (e) => {
+UserApp.jsx: const data = await authFetch('/update_student_profile.php', {
+UserApp.jsx: const fetchNotifications = async () => {
+UserApp.jsx: const data = await authFetch(`/get_notifications.php?student_id=${studentId}&type=announcement`);
+UserApp.jsx: const addToCart = (item) => {
+UserApp.jsx: const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Bangkok' });
+UserApp.jsx: const borrowedTodayCount = borrowedItems.filter(i => {
+UserApp.jsx: const bDate = new Date(i.borrow_date).toLocaleDateString('en-CA', { timeZone: 'Asia/Bangkok' });
+UserApp.jsx: const removeFromCart = (equipmentId) => {
+UserApp.jsx: const handleCheckout = async () => {
+UserApp.jsx: const result = await authFetch('/checkout.php', {
+UserApp.jsx: const txId = firstBorrowId ? 'LB' + String(firstBorrowId).padStart(6, '0') : 'LB' + Math.floor(100000 + Math.random() * 900000);
+UserApp.jsx: const handleBorrow = async (equipment) => {
+UserApp.jsx: const result = await authFetch('/checkout.php', {
+UserApp.jsx: const txId = result.borrow_id ? 'LB' + String(result.borrow_id).padStart(6, '0') : 'LB' + Math.floor(100000 + Math.random() * 900000);
+UserApp.jsx: const handleJoinQueue = async (equipment) => {
+UserApp.jsx: const result = await authFetch('/join_queue.php', {
+UserApp.jsx: const handleCancelQueue = async (queueId) => {
+UserApp.jsx: const result = await authFetch('/cancel_queue.php', {
+UserApp.jsx: const openDetail = async (equipmentId) => {
+UserApp.jsx: const res = await fetch(`${API_BASE}/get_detail.php?id=${equipmentId}`);
+UserApp.jsx: const data = await res.json();
+UserApp.jsx: const handleCancelRequest = async (id) => {
+UserApp.jsx: const data = await authFetch('/cancel_request.php', {
+UserApp.jsx: const activeItems = borrowedItems.filter(i => i.status === 'borrowed' || i.status === 'pending');
+UserApp.jsx: const returnedCount = borrowedItems.filter(i => i.status === 'returned').length;
+UserApp.jsx: const activeEquipmentIds = activeItems.map(i => i.equipment_id);
+UserApp.jsx: const previouslyBorrowedIds = [...new Set(borrowedItems.filter(i => !activeEquipmentIds.includes(i.equipment_id)).map(i => i.equipment_id))];
+UserApp.jsx: const previouslyBorrowedEquipments = equipments.filter(eq => previouslyBorrowedIds.includes(eq.equipment_id)).slice(0, 5);
+UserApp.jsx: const filteredStatusItems = borrowedItems.filter(item => {
+UserApp.jsx: const s = getItemStatus(item);
+UserApp.jsx: const totalFine = borrowedItems.reduce((sum, item) => sum + getItemStatus(item).fine, 0);
+UserApp.jsx: const filteredEquipments = equipments.filter(item => {
+UserApp.jsx: const matchCat = matchCategory(item.name, activeCategory);
+UserApp.jsx: const matchSearch = (item.name || '').toLowerCase().includes(searchText.toLowerCase()) ||
+UserApp.jsx: const badgeCount = (key) => {
+UserApp.jsx: const Icon = item.icon;
+UserApp.jsx: const active = currentPage === item.key;
+UserApp.jsx: const count = badgeCount(item.key);
+UserApp.jsx: const Icon = item.icon;
+UserApp.jsx: const active = currentPage === item.key;
+UserApp.jsx: const count = badgeCount(item.key);
+UserApp.jsx: const receipt = groupedReceipts.find(g => g.txId === notif.receiptTxId);
+UserApp.jsx: const s = getItemStatus(item);
+UserApp.jsx: const s = getItemStatus(item);
+UserApp.jsx: const s = getItemStatus(item);
+UserApp.jsx: const d = new Date(item.borrow_date); d.setDate(d.getDate() + 3); return d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' });
+UserApp.jsx: const available = detailItem.available_quantity ?? detailItem.total_quantity;
+UserApp.jsx: const inQueue = myQueueItems.find(q => q.equipment_id === detailItem.equipment_id);
+UserApp.jsx: const currentQueueCount = detailItem.queue_count || 0;
+UserApp.jsx: const MAX_QUEUE = 10;
+UserApp.jsx: const ok = addToCart(detailItem);
+Home.jsx: const formatEquipmentName = (name) => {
+Home.jsx: const KPI_DATA = [
+Home.jsx: const CHART_DATA = {
+Home.jsx: const RECENT_ACTIVITY = [
+Home.jsx: const STATUS_MAP = {
+Home.jsx: const KPI_TONE = {
+Home.jsx: const NAV_ITEMS = [
+Home.jsx: function Toast({ message, type, onClose }) {
+Home.jsx: const colors = {
+Home.jsx: const timer = setTimeout(onClose, 3500);
+Home.jsx: const API_BASE = 'http://localhost:5000';
+Home.jsx: const token = sessionStorage.getItem('admin_token');
+Home.jsx: const headers = {
+Home.jsx: const res = await fetch(`${API_BASE}${url}`, { ...options, headers });
+Home.jsx: const showToast = (message, type = 'info') => setToast({ message, type });
+Home.jsx: const handleImageUpload = (e, targetField) => {
+Home.jsx: const file = e.target.files[0];
+Home.jsx: const reader = new FileReader();
+Home.jsx: const img = new window.Image();
+Home.jsx: const canvas = document.createElement("canvas");
+Home.jsx: const context = canvas.getContext("2d");
+Home.jsx: const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+Home.jsx: const code = jsQR(imageData.data, imageData.width, imageData.height, {
+Home.jsx: const d = new Date();
+Home.jsx: const REPORT_LABEL = { monthly: 'รายเดือน', yearly: 'รายปี', equipment_stats: 'สถิติอุปกรณ์ยอดนิยม' };
+Home.jsx: const THAI_MONTHS = ['', 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+Home.jsx: const getReportTitle = () => {
+Home.jsx: const label = REPORT_LABEL[reportType] || reportType;
+Home.jsx: const d1 = new Date(reportStartDate);
+Home.jsx: const d2 = new Date(reportEndDate);
+Home.jsx: const startStr = `${d1.getDate()} ${THAI_MONTHS[d1.getMonth() + 1]} ${d1.getFullYear() + 543}`;
+Home.jsx: const endStr = `${d2.getDate()} ${THAI_MONTHS[d2.getMonth() + 1]} ${d2.getFullYear() + 543}`;
+Home.jsx: const getReportSummary = () => {
+Home.jsx: const totalBorrows = reportData.reduce((sum, r) => sum + (parseInt(r.total_borrows) || 0), 0);
+Home.jsx: const totalReturned = reportData.reduce((sum, r) => sum + (parseInt(r.total_returned) || 0), 0);
+Home.jsx: const totalOverdue = reportData.reduce((sum, r) => sum + (parseInt(r.total_overdue) || 0), 0);
+Home.jsx: const generateReport = async () => {
+Home.jsx: const data = await authFetch(`/api/admin/reports?type=${reportType}&startDate=${reportStartDate}&endDate=${reportEndDate}&sort=${equipSortOrder}`);
+Home.jsx: const formattedData = (data.data || []).map(item => {
+Home.jsx: const fetchEquipmentBreakdown = async () => {
+Home.jsx: const data = await authFetch(`/api/admin/reports/equipment-breakdown?startDate=${reportStartDate}&endDate=${reportEndDate}`);
+Home.jsx: const fetchStudentBreakdown = async () => {
+Home.jsx: const data = await authFetch(`/api/admin/reports/student-breakdown?startDate=${reportStartDate}&endDate=${reportEndDate}`);
+Home.jsx: const exportToExcel = () => {
+Home.jsx: const workbook = XLSX.utils.book_new();
+Home.jsx: const HEADER_MAP = {
+Home.jsx: const mappedData = reportData.map(row => {
+Home.jsx: const newRow = {};
+Home.jsx: const ws1 = XLSX.utils.json_to_sheet(mappedData);
+Home.jsx: const eqData = equipmentBreakdownData.map((eq, i) => ({
+Home.jsx: const ws2 = XLSX.utils.json_to_sheet(eqData);
+Home.jsx: const wsStudent = XLSX.utils.json_to_sheet(studentBreakdownData.map(s => ({
+Home.jsx: const exportToPDF = async () => {
+Home.jsx: const element = document.getElementById('report-capture-area');
+Home.jsx: const dataUrl = await htmlToImage.toPng(element, {
+Home.jsx: const doc = new jsPDF('p', 'mm', 'a4');
+Home.jsx: const imgProps = doc.getImageProperties(dataUrl);
+Home.jsx: const pdfWidth = doc.internal.pageSize.getWidth();
+Home.jsx: const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+Home.jsx: const exportToImage = async () => {
+Home.jsx: const element = document.getElementById('report-capture-area');
+Home.jsx: const dataUrl = await htmlToImage.toPng(element, {
+Home.jsx: const link = document.createElement('a');
+Home.jsx: const fetchRequests = () => {
+Home.jsx: const handleAction = async (id, action) => {
+Home.jsx: const data = await authFetch('/api/admin/update-request', {
+Home.jsx: const fetchUserHistoryForModal = async (studentId) => {
+Home.jsx: const data = await authFetch(`/api/admin/user-history/${studentId}`);
+Home.jsx: const handleViewItems = async (eq) => {
+Home.jsx: const data = await authFetch(`/api/admin/equipments/${eq.equipment_id}/items`);
+Home.jsx: const handleUnifiedScan = async (e, scannedCode = null) => {
+Home.jsx: const inputToUse = (scannedCode || scanInput).trim();
+Home.jsx: const isQueueScan = inputToUse.toUpperCase().startsWith('QUEUE-') || inputToUse.toUpperCase().startsWith('LB');
+Home.jsx: const qIdClean = inputToUse.toUpperCase().replace('QUEUE-', '');
+Home.jsx: const data = await authFetch('/api/admin/pickup_queue.php', {
+Home.jsx: const data = await authFetch('/api/admin/return_by_barcode.php', {
+Home.jsx: const handleUpdateItemStatus = async (itemId, newStatus) => {
+Home.jsx: const data = await authFetch(`/api/admin/equipment-items/${itemId}/status`, {
+Home.jsx: const fetchEquipments = () => {
+Home.jsx: const fetchUsers = () => {
+Home.jsx: const handleSaveEquipment = async () => {
+Home.jsx: const formData = new FormData();
+Home.jsx: const data = await authFetch('/api/admin/equipments', {
+Home.jsx: const handleUpdateEquipment = async () => {
+Home.jsx: const formData = new FormData();
+Home.jsx: const data = await authFetch(`/api/admin/equipments/${editEquip.equipment_id}`, {
+Home.jsx: const handleDeleteEquipment = async (id) => {
+Home.jsx: const data = await authFetch(`/api/admin/equipments/${id}`, {
+Home.jsx: const fetchNotifications = () => {
+Home.jsx: const handleSendNotification = async () => {
+Home.jsx: const formData = new FormData();
+Home.jsx: const data = await authFetch('/api/admin/notifications', {
+Home.jsx: const socket = io(API_BASE);
+Home.jsx: const activeChartSource = dashboardData?.chartData || CHART_DATA;
+Home.jsx: const chartData = activeChartSource[chartRange];
+Home.jsx: const maxVal = Math.max(...chartData.map((d) => d.v), 5);
+Home.jsx: const currentKpiData = dashboardData ? [
+Home.jsx: const formatThaiDate = (dateString) => {
+Home.jsx: const date = new Date(dateString);
+Home.jsx: const currentRecentActivity = dashboardData ? dashboardData.recent_activity.map(a => ({
+Home.jsx: const filteredRequests = requestsData.filter(r => {
+Home.jsx: const matchStatus = filterStatus === "all" || r.status === filterStatus;
+Home.jsx: const bDate = r.borrow_date ? new Date(r.borrow_date).toISOString().split('T')[0] : "";
+Home.jsx: const rDate = r.return_date ? new Date(r.return_date).toISOString().split('T')[0] : "";
+Home.jsx: const filteredModalHistory = modalUserHistory.filter(h => {
+Home.jsx: const s = modalHistorySearchDate.toLowerCase();
+Home.jsx: const b = formatThaiDate(h.borrow_date).toLowerCase();
+Home.jsx: const r = h.return_date ? formatThaiDate(h.return_date).toLowerCase() : "-";
+Home.jsx: const n = h.equipment_name ? h.equipment_name.toLowerCase() : "";
+Home.jsx: const active = currentPage === item.key;
+Home.jsx: const Icon = item.icon;
+Home.jsx: const Icon = kpi.icon;
+Home.jsx: const statusMap = {
+Home.jsx: const status = statusMap[user.education_status] || { label: user.education_status, cls: 'bg-slate-100 text-slate-600' };
+Home.jsx: const hStatus = STATUS_MAP[h.status] || { label: h.status, cls: "bg-slate-100 text-slate-600" };
+server.js: const cron = require('node-cron');
+server.js: // Cron Jobs
+server.js: // Cron job for midnight tasks (Reset queues/reservations and check overdue)
+server.js: cron.schedule('0 0 * * *', async () => {
+server.js: console.log('[Cron] Running daily midnight tasks...');
+server.js: console.log('[Cron] Resetting daily queues and reservations...');
+server.js: console.log(`[Cron] Reset ${pendingReservations.length} reservations and ${activeQueues.length} queues.`);
+server.js: console.error('[Cron] Error resetting queues/reservations:', error);
+server.js: console.log('[Cron] Overdue check complete.');
+server.js: console.error('[Cron] Error checking overdue items:', error);
+server.js: // Cron job to check for items due soon (1, 2, 3 days left) every morning at 8:00 AM
+server.js: cron.schedule('0 8 * * *', async () => {
+server.js: console.log('[Cron] Running daily due soon check...');
+server.js: console.log('[Cron] Due soon check complete.');
+server.js: console.error('[Cron] Error checking due soon items:', error);
+server.js: // Cron job to send urgent reminder at 16:00 for items due TODAY
+server.js: cron.schedule('0 16 * * *', async () => {
+server.js: console.log('[Cron] Running daily urgent reminder check (16:00)...');
+server.js: console.log('[Cron] Urgent reminder check complete.');
+server.js: console.error('[Cron] Error checking urgent items:', error);
+server.js: // Cron job: Check every 1 minute for expired queue calls (5-min window)
+server.js: cron.schedule('* * * * *', async () => {
+server.js: console.log(`[Cron] Expired queue #${row.id} for equipment ${row.equipment_name}`);
+server.js: console.error('[Cron] Error checking expired queue/reservations:', error);

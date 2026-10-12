@@ -1,0 +1,61 @@
+﻿adminRoutes.js: router.get('/equipment_items/status', async (req, res) => {
+adminRoutes.js: router.get('/dashboard', async (req, res) => {
+adminRoutes.js: router.get('/requests', async (req, res) => {
+adminRoutes.js: router.post('/update-request', validate(updateRequestSchema), async (req, res) => {
+adminRoutes.js: await callNextInQueue(borrowInfo.equipment_id, req.app.get('io'));
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.post('/notifications', upload.single('notification_img'), validate(notificationSchema), async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.get('/notifications', async (req, res) => {
+adminRoutes.js: router.get('/equipments', async (req, res) => {
+adminRoutes.js: router.post('/equipments', upload.single('equipment_img'), validate(addEquipmentSchema), async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.put('/equipments/:id', upload.single('equipment_img'), async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.delete('/equipments/:id', async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.get('/users', async (req, res) => {
+adminRoutes.js: router.get('/user-history/:studentId', async (req, res) => {
+adminRoutes.js: router.get('/queue/:equipmentId', async (req, res) => {
+adminRoutes.js: router.post('/queue/:id/skip', async (req, res) => {
+adminRoutes.js: await callNextInQueue(queueItem[0].equipment_id, req.app.get('io'));
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.get('/queue_details.php', async (req, res) => {
+adminRoutes.js: router.post('/pickup_queue.php', async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: req.app.get('io').emit('scan_success', {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: req.app.get('io').emit('scan_success', {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: req.app.get('io').emit('scan_success', {
+adminRoutes.js: router.post('/return_by_barcode.php', async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: req.app.get('io').emit('scan_success', {
+adminRoutes.js: router.get('/equipments/:id/items', async (req, res) => {
+adminRoutes.js: router.put('/equipment-items/:itemId/status', async (req, res) => {
+adminRoutes.js: req.app.get('io').emit('data_updated');
+adminRoutes.js: router.get('/reports', async (req, res) => {
+adminRoutes.js: router.get('/reports/equipment-breakdown', async (req, res) => {
+adminRoutes.js: router.get('/reports/student-breakdown', async (req, res) => {
+authRoutes.js: router.post('/admin-login', validate(adminLoginSchema), async (req, res) => {
+authRoutes.js: router.post('/user-login', validate(userLoginSchema), async (req, res) => {
+mobileRoutes.js: router.post('/login.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_equipments.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_detail.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_queue.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_student.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_notifications.php', async (req, res) => {
+mobileRoutes.js: router.get('/get_borrowed.php', async (req, res) => {
+mobileRoutes.js: router.post('/checkout.php', validate(checkoutSchema), async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
+mobileRoutes.js: router.post('/join_queue.php', validate(queueSchema), async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
+mobileRoutes.js: router.get('/my_queue.php', async (req, res) => {
+mobileRoutes.js: router.post('/cancel_queue.php', async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
+mobileRoutes.js: router.post('/cancel_request.php', async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
+mobileRoutes.js: router.post('/report_lost.php', validate(reportLostSchema), async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
+mobileRoutes.js: router.post('/update_student_profile.php', async (req, res) => {
+mobileRoutes.js: req.app.get('io').emit('data_updated');
